@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'hypibole'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=hypibole",
+                    "--package=hypibole"
+                ],
+                "filter": {
+                    "name": "hypibole",
+                    "kind": "bin"
+                }
+            },
+            "args": ["--simgets", "1,2,3,4", "--simsets", "1,2,3"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'hypibole'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=hypibole",
+                    "--package=hypibole"
+                ],
+                "filter": {
+                    "name": "hypibole",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
