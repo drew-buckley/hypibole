@@ -25,6 +25,24 @@
         {
             "type": "lldb",
             "request": "launch",
+            "name": "Debug executable 'hypibole-launcher'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=hypibole-launcher",
+                    "--package=hypibole-launcher"
+                ],
+                "filter": {
+                    "name": "hypibole-launcher",
+                    "kind": "bin"
+                }
+            },
+            "args": ["./hypibole", "./hypibole.conf"],
+            "cwd": "${workspaceFolder}/target/debug"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
             "name": "Debug unit tests in executable 'hypibole'",
             "cargo": {
                 "args": [
