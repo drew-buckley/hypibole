@@ -1,0 +1,15 @@
+[Unit]
+After=network.target
+Description=Hypibole GPIO Control HTTP Server
+DefaultDependencies=no
+
+[Service]
+Type=notify
+ExecStart=hypibole-launcher /etc/hypibole/hypibole.conf
+Restart=on-failure
+KillMode=process
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target
+Alias=hypibole.service
