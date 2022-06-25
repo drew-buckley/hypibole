@@ -17,7 +17,7 @@ install:
 	install -d $(PREFIX)/bin/
 	install -m 755 target/release/hypibole $(PREFIX)/bin/
 	install -m 755 target/release/hypibole-launcher $(PREFIX)/bin/
-	install -m 644 src/hypibole-service/systemd/hypibole.service /usr/lib/systemd/
+	install -m 644 src/hypibole-service/systemd/hypibole.service /usr/lib/systemd/system/
 	install -d /etc/hypibole
 	install -m 644 src/hypibole-service/configuration/hypibole.conf /etc/hypibole/
 
@@ -26,4 +26,4 @@ uninstall:
 	rm $(PREFIX)/bin/hypibole-launcher
 	rm -rf /etc/hypibole
 	systemctl disable hypibole.service
-	rm /usr/lib/systemd/hypibole.service
+	rm /usr/lib/systemd/system/hypibole.service

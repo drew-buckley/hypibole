@@ -1,5 +1,6 @@
 use std::env;
 use std::fs;
+use std::process::exit;
 use std::process::{Command, Stdio};
 use std::str::from_utf8;
 use serde::{Deserialize};
@@ -70,30 +71,15 @@ fn main() {
         };
     };
 
-    hypibole_cmd.stdout(Stdio::piped());
-    hypibole_cmd.stderr(Stdio::piped());
-    let hypibole_process = hypibole_cmd.spawn()
+    let mut hypibole_process = hypibole_cmd.spawn()
         .expect("Failed to spawn hypibole.");
 
-    let mut hypibole_stdout = hypibole_process.stdout.unwrap();
-    let mut hypibole_stderr = hypibole_process.stderr.unwrap();
-
-    let mut buffer: [u8; 1024] = [0; 1024];
-    loop {
-        let bytes_read = hypibole_stdout.read(&mut buffer)
-            .expect("Failed to read STDOUT.");
-
-        let stdout_str = from_utf8(&buffer[0 .. bytes_read])
-            .expect("Failed to decode STDOUT.");
-
-        print!("{}", stdout_str);
-
-        let bytes_read = hypibole_stderr.read(&mut buffer)
-            .expect("Failed to read STDERR.");
-
-        let stderr_str = from_utf8(&buffer[0 .. bytes_read])
-            .expect("Failed to decode STDERR.");
-
-        eprint!("{}", stderr_str);
-    }
+    match hypibole_process.wait() {
+        Ok(exit_code) => {
+            if !exit_code.success() {
+                panic!("hypibole exited with code, {}", exit_code.code().unwrap());
+            }
+        }
+        Err(e) => panic!("{}", e.to_string())
+    };
 }
