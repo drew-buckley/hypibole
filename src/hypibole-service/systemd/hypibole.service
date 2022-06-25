@@ -4,7 +4,7 @@ Description=Hypibole GPIO Control HTTP Server
 DefaultDependencies=no
 
 [Service]
-Type=notify
+Type=exec
 ExecStart=hypibole-launcher "hypibole" "/etc/hypibole/hypibole.conf"
 Restart=on-failure
 KillMode=process
