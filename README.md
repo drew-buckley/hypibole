@@ -2,6 +2,8 @@
 
 Hypibole is a dead simple, lightweight HTTP API for driving and reading whitelisted GPIOs on a Raspberry Pi. I've been primarily running this on a Raspberry Pi Zero W. Someday I will find the time to improve this doc, but for now, if you really want to understand all aspects about how to use this, you'll have to read the source. Currently, GPIOs can only be controlled as discrete digital I/O pins. 
 
+Build and install: `make && sudo make install`
+
 ## Examples
 
 The following are some example uses of the API: \
